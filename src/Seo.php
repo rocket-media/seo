@@ -19,4 +19,9 @@ use craft\base\Plugin;
 class Seo extends Plugin
 {
 
+	// Properties
+	// =========================================================================
+
+	public $hasCpSection = true;
+
 }

@@ -1,4 +1,7 @@
-# Created by .ignore support plugin (hsz.mobi)
+tests/.env
+composer.lock
+cpresources
+
 ### macOS template
 # General
 .DS_Store
