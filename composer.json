@@ -1,0 +1,33 @@
+{
+  "name": "ether/seo",
+  "description": "A powerful and easy to use SEO plugin built with clients in mind!",
+  "version": "4.0.0",
+  "type": "craft-plugin",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ether",
+      "homepage": "https://ethercreative.co.uk"
+    }
+  ],
+  "support": {
+    "email": "dev@ethercreative.co.uk",
+    "issues": "https://github.com/ethercreative/seo/issues?state=open",
+    "source": "https://github.com/ethercreative/seo",
+    "docs": "https://github.com/ethercreative/seo/blob/master/README.md"
+  },
+  "require": {
+    "craftcms/cms": "^3.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ether\\seo\\": "src/"
+    }
+  },
+  "extra": {
+    "handle": "seo",
+    "name": "SEO",
+    "documentationUrl": "https://github.com/ethercreative/seo/blob/master/README.md",
+    "class": "ether\\seo\\Seo"
+  }
+}
