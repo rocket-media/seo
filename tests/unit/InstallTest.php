@@ -15,11 +15,6 @@ class InstallTest extends Unit
 	 */
 	protected $tester;
 
-	public function testSeoExists ()
-	{
-		$this->assertTrue(class_exists(\ether\seo\Seo::class));
-	}
-
 	public function testSeoInstall ()
 	{
 		$this->assertTrue(Craft::$app->getPlugins()->installPlugin('seo'));
@@ -30,9 +25,13 @@ class InstallTest extends Unit
 		$this->assertTrue(Craft::$app->getPlugins()->enablePlugin('seo'));
 	}
 
-	public function testSeoInstalled ()
+	public function testSeoInstalledAndEnabled ()
 	{
-		$this->assertTrue(Craft::$app->getPlugins()->isPluginEnabled('seo'));
+		$plugins = Craft::$app->getPlugins();
+
+		$this->assertTrue(
+			$plugins->isPluginEnabled('seo') && $plugins->isPluginEnabled('seo')
+		);
 	}
 
 }
