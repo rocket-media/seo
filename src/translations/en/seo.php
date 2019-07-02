@@ -8,7 +8,9 @@
 
 return [
 	'Dashboard' => 'Dashboard',
+	'Decide how the page meta should look for this field' => 'Decide how the page meta should look for this field',
 	'Redirects' => 'Redirects',
+	'Page Meta' => 'Page Meta',
 	'Robots' => 'Robots',
 	'SEO' => 'SEO',
 	'SEO Settings' => 'SEO Settings',

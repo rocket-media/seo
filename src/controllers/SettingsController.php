@@ -8,8 +8,10 @@
 
 namespace ether\seo\controllers;
 
+use Craft;
 use craft\web\Controller;
 use ether\seo\Seo;
+use ether\seo\web\assets\SeoFieldSettingsAsset;
 
 /**
  * Class SettingsController
@@ -22,6 +24,11 @@ class SettingsController extends Controller
 
 	public function actionIndex ()
 	{
+		$view = Craft::$app->getView();
+
+		$view->registerAssetBundle(SeoFieldSettingsAsset::class);
+		$view->registerJs('new Vue({ el: "#content" })');
+
 		return $this->renderTemplate(
 			'seo/_settings/index',
 			[ 'settings' => Seo::getInstance()->getSettings() ]
