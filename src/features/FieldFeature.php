@@ -6,30 +6,48 @@
  * @copyright Copyright (c) 2019 Ether Creative
  */
 
-namespace ether\seo\traits;
-
+namespace ether\seo\features;
 
 use craft\events\RegisterComponentTypesEvent;
 use craft\services\Fields;
 use ether\seo\fields\SeoField;
+use ether\seo\interfaces\FeatureInterface;
 use yii\base\Event;
 
-trait FieldTypeTrait
+/**
+ * Class FieldFeature
+ *
+ * @author  Ether Creative
+ * @package ether\seo\features
+ */
+class FieldFeature implements FeatureInterface
 {
 
-	// Initialize
+	// Feature
 	// =========================================================================
 
 	/**
-	 * Initialize the Field Type section
+	 * Initialize the feature during plugin init
+	 *
+	 * @return void
 	 */
-	public function initFieldType ()
+	public function init ()
 	{
 		Event::on(
 			Fields::class,
 			Fields::EVENT_REGISTER_FIELD_TYPES,
 			[$this, 'onRegisterFieldTypes']
 		);
+	}
+
+	/**
+	 * Return the CP nav items for this feature
+	 *
+	 * @return array
+	 */
+	public function getCpNavItem ()
+	{
+		return [];
 	}
 
 	// Events

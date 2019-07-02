@@ -7,5 +7,10 @@
  */
 
 return [
+	'Dashboard' => 'Dashboard',
+	'Redirects' => 'Redirects',
+	'Robots' => 'Robots',
 	'SEO' => 'SEO',
+	'SEO Settings' => 'SEO Settings',
+	'Sitemap' => 'Sitemap',
 ];
