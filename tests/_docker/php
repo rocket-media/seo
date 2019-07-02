@@ -1,0 +1,7 @@
+FROM php:fpm-alpine
+
+RUN apk --no-cache add postgresql-dev postgresql-client
+RUN docker-php-ext-install pdo_pgsql
+
+COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
+RUN composer global require hirak/prestissimo

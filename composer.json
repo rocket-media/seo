@@ -30,8 +30,10 @@
     "documentationUrl": "https://github.com/ethercreative/seo/blob/master/README.md",
     "class": "ether\\seo\\Seo"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "require-dev": {
     "codeception/codeception": "^3.0",
-    "vlucas/phpdotenv": "^2.4.0"
+    "vlucas/phpdotenv": "^3.3"
   }
 }

@@ -1,0 +1,17 @@
+version: '3'
+services:
+  php:
+    build:
+      context: .
+      dockerfile: tests/_docker/php
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www:delegated
+      - ~/.composer/cache:/root/.composer/cache:delegated
+    links:
+      - postgres
+  postgres:
+    image: postgres:11-alpine
+    env_file: tests/.env
+    volumes:
+      - ./tests/_data/postgres:/var/lib/postgresql/data:delegated

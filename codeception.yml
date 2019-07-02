@@ -13,7 +13,7 @@ modules:
   config:
     \craft\test\Craft:
       configFile: 'tests/_craft/config/test.php'
-      entryUrl: 'https://dev.seo4/'
+      entryUrl: 'https://craft.test/'
       entryScript: 'index.php'
       projectConfig: {}
       migrations: []
