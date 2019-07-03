@@ -10,6 +10,7 @@ namespace ether\seo;
 
 use Craft;
 use craft\base\Plugin;
+use craft\errors\DeprecationException;
 use craft\events\RegisterUrlRulesEvent;
 use craft\helpers\UrlHelper;
 use craft\web\UrlManager;
@@ -18,6 +19,10 @@ use ether\seo\features\RedirectFeature;
 use ether\seo\features\SitemapFeature;
 use ether\seo\interfaces\FeatureInterface;
 use ether\seo\models\Settings;
+use ether\seo\traits\Services;
+use ether\seo\web\twig\Extension;
+use Twig\Error\LoaderError;
+use Twig\Error\SyntaxError;
 use yii\base\Event;
 
 /**
@@ -28,6 +33,8 @@ use yii\base\Event;
  */
 class Seo extends Plugin
 {
+
+	use Services;
 
 	// Properties
 	// =========================================================================
@@ -50,6 +57,8 @@ class Seo extends Plugin
 	{
 		parent::init();
 
+		$this->_setComponents();
+
 		// Events
 		// ---------------------------------------------------------------------
 
@@ -58,6 +67,16 @@ class Seo extends Plugin
 			UrlManager::EVENT_REGISTER_CP_URL_RULES,
 			[$this, 'onRegisterCpUrlRules']
 		);
+
+		Craft::$app->getView()->registerTwigExtension(
+			new Extension()
+		);
+
+		if (Craft::$app->getRequest()->getIsSiteRequest())
+		{
+			/* @deprecated 4.x Will be removed in 5.x */
+			Craft::$app->getView()->hook('seo', [$this, 'onRegisterSeoHook']);
+		}
 
 		// Features
 		// ---------------------------------------------------------------------
@@ -154,6 +173,25 @@ class Seo extends Plugin
 	public function onRegisterCpUrlRules (RegisterUrlRulesEvent $event)
 	{
 		$event->rules['seo/settings'] = 'seo/settings/index';
+	}
+
+	/**
+	 * @param $context
+	 *
+	 * @return string
+	 * @throws LoaderError
+	 * @throws SyntaxError
+	 * @throws DeprecationException
+	 * @deprecated 4.x Will be removed in 5.x
+	 */
+	public function onRegisterSeoHook (&$context)
+	{
+		Craft::$app->getDeprecator()->log(
+			'seo_hook',
+			'{% hook \'seo\' %} is now deprecated. Use {% seo %} instead.'
+		);
+
+		return Craft::$app->getView()->renderString('{% seo %}', $context);
 	}
 
 	// Helpers

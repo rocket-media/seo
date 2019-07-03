@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	filenameHashing: false,
-	outputDir: '../src/web/assets/field-settings',
+	outputDir: '../../src/web/assets/field-settings',
 	devServer: {
 		https: true,
 		headers: { "Access-Control-Allow-Origin": "*" },

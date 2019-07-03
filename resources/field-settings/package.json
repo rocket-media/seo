@@ -32,7 +32,9 @@
       "eslint:recommended"
     ],
     "rules": {
-      "no-console": "warn"
+      "no-console": "warn",
+      "no-mixed-spaces-and-tabs": "off",
+      "no-regex-spaces": "off"
     },
     "parserOptions": {
       "parser": "babel-eslint"

@@ -1,3 +1,3 @@
 export function t (message, params = null) {
-	return window.Craft.t('simplemap', message, params);
+	return window.Craft.t('seo', message, params);
 }
