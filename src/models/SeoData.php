@@ -24,6 +24,23 @@ class SeoData extends Model
 
 	private $_data = [
 		'title' => '',
+		'description' => '',
+		'image' => null,
+
+		'facebook' => [
+			'title' => '',
+			'description' => '',
+			'image' => null,
+		],
+
+		'twitter' => [
+			'title' => '',
+			'description' => '',
+			'image' => null,
+		],
+
+		'robots' => [],
+		'canonical' => '',
 	];
 
 	private $_dataOverrides = [];
@@ -73,6 +90,11 @@ class SeoData extends Model
 				$this->_data[$key] = $value;
 	}
 
+	/**
+	 * Get the markup overrides
+	 *
+	 * @return array
+	 */
 	public function getMarkupOverrides ()
 	{
 		return array_reverse($this->_markupOverrides);
@@ -84,7 +106,7 @@ class SeoData extends Model
 	/**
 	 * Get the SEO Title
 	 *
-	 * @return string|null
+	 * @return string
 	 */
 	public function getTitle ()
 	{
@@ -92,9 +114,15 @@ class SeoData extends Model
 		return $this->_data['title'];
 	}
 
+	/**
+	 * Get the SEO Description
+	 *
+	 * @return string
+	 */
 	public function getDescription ()
 	{
-		return '';
+		// TODO: Render description from field
+		return $this->_data['description'];
 	}
 
 }
