@@ -1,5 +1,0 @@
-[01-Jul-2019 08:57:24 America/Los_Angeles] PHP Fatal error:  Uncaught RuntimeException: Command Did Not Finish Properly in /var/www/html/vendor/codeception/codeception/src/Codeception/Subscriber/ErrorHandler.php:101
-Stack trace:
-#0 [internal function]: Codeception\Subscriber\ErrorHandler->shutdownHandler()
-#1 {main}
-  thrown in /var/www/html/vendor/codeception/codeception/src/Codeception/Subscriber/ErrorHandler.php on line 101
