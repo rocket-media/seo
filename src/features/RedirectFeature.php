@@ -21,9 +21,6 @@ use ether\seo\Seo;
 class RedirectFeature implements FeatureInterface
 {
 
-	// Feature
-	// =========================================================================
-
 	/**
 	 * Initialize the feature during plugin init
 	 *
@@ -43,7 +40,7 @@ class RedirectFeature implements FeatureInterface
 	{
 		$user = Craft::$app->getUser();
 
-		if (!$user->getIsAdmin()/* TODO: Check permissions */)
+		if ($user->can('manageRedirects'))
 			return [];
 
 		return [
@@ -54,4 +51,17 @@ class RedirectFeature implements FeatureInterface
 		];
 	}
 
+	/**
+	 * Register SEO permissions
+	 *
+	 * @return array
+	 */
+	public function registerPermissions ()
+	{
+		return [
+			'manageRedirects' => [
+				'label' => 'Manage Redirects',
+			],
+		];
+	}
 }

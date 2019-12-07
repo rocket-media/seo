@@ -54,4 +54,11 @@ class SitemapFeature implements FeatureInterface
 		];
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function registerPermissions ()
+	{
+		return [];
+	}
 }

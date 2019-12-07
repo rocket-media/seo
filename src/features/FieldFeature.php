@@ -63,4 +63,11 @@ class FieldFeature implements FeatureInterface
 		$event->types[] = SeoField::class;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function registerPermissions ()
+	{
+		return [];
+	}
 }

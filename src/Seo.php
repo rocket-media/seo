@@ -12,7 +12,9 @@ use Craft;
 use craft\base\Plugin;
 use craft\errors\DeprecationException;
 use craft\events\RegisterUrlRulesEvent;
+use craft\events\RegisterUserPermissionsEvent;
 use craft\helpers\UrlHelper;
+use craft\services\UserPermissions;
 use craft\web\UrlManager;
 use ether\seo\features\FieldFeature;
 use ether\seo\features\RedirectFeature;
@@ -66,6 +68,12 @@ class Seo extends Plugin
 			UrlManager::class,
 			UrlManager::EVENT_REGISTER_CP_URL_RULES,
 			[$this, 'onRegisterCpUrlRules']
+		);
+
+		Event::on(
+			UserPermissions::class,
+			UserPermissions::EVENT_REGISTER_PERMISSIONS,
+			[$this, 'onRegisterPermissions']
 		);
 
 		Craft::$app->getView()->registerTwigExtension(
@@ -147,6 +155,7 @@ class Seo extends Plugin
 	 */
 	public function getSettings (): Settings
 	{
+		/** @noinspection PhpIncompatibleReturnTypeInspection */
 		return parent::getSettings();
 	}
 
@@ -176,6 +185,8 @@ class Seo extends Plugin
 	}
 
 	/**
+	 * Register the SEO old hook
+	 *
 	 * @param $context
 	 *
 	 * @return string
@@ -192,6 +203,21 @@ class Seo extends Plugin
 		);
 
 		return Craft::$app->getView()->renderString('{% seo %}', $context);
+	}
+
+	/**
+	 * Register user permissions
+	 *
+	 * @param RegisterUserPermissionsEvent $event
+	 */
+	public function onRegisterPermissions (RegisterUserPermissionsEvent $event)
+	{
+		$perms = [];
+
+		foreach ($this->_features as $feature)
+			$perms += $feature->registerPermissions();
+
+		$event->permissions[self::t('SEO')] = $perms;
 	}
 
 	// Helpers

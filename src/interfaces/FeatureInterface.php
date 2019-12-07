@@ -31,4 +31,11 @@ interface FeatureInterface
 	 */
 	public function getCpNavItem ();
 
+	/**
+	 * Register SEO permissions
+	 *
+	 * @return array
+	 */
+	public function registerPermissions ();
+
 }
